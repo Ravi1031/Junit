@@ -1,24 +1,27 @@
 package com.rv.service;
 
 import com.rv.dao.UserDao;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.*;
+import org.mockito.*;
+
 import static org.mockito.ArgumentMatchers.anyString;
 
 class UserServiceTest {
 
-    private UserService userService;
+    @Mock
     private UserDao userDao;
+    @InjectMocks
+    private UserService userService;
+
 
     @BeforeEach
     void init(){
-//        MockitoAnnotations.openMocks(this);
-        userDao = Mockito.mock(UserDao.class);
-        userService = new UserService(userDao);
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @AfterEach
+    void tearDown() {
+        Mockito.reset(userDao);
     }
 
     @Test

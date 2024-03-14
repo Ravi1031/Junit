@@ -16,5 +16,6 @@ public class UserDao {
 
     public void sendEmailNotification(int count){
         out.println("Email sent for today count:::: "+count);
+
     }
 }
