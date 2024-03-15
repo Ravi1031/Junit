@@ -1,5 +1,7 @@
 package com.rv.dao;
 
+import com.rv.entity.User;
+
 import static java.lang.System.*;
 public class UserDao {
 
@@ -16,6 +18,14 @@ public class UserDao {
 
     public void sendEmailNotification(int count){
         out.println("Email sent for today count:::: "+count);
+    }
 
+    public User getUserById(String id){
+        return new User();
+    }
+    
+    public User saveUser(User user){
+        out.println("Inside spy....");
+        return new User("1234","Ravi","Prakash","Male");
     }
 }

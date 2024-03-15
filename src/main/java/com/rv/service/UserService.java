@@ -1,7 +1,10 @@
 package com.rv.service;
 
 import com.rv.dao.UserDao;
+import com.rv.entity.User;
 
+import java.util.ArrayList;
+import java.util.List;
 public class UserService {
 
     private final UserDao userDao;
@@ -17,5 +20,20 @@ public class UserService {
 
     public void sendEmail(){
         userDao.sendEmailNotification(5);
+    }
+
+    public List<User> getAllUser(List<String> userIds){
+        List<User> userList = new ArrayList<>();
+        for (String userId:userIds) {
+            User userById = userDao.getUserById(userId);
+            userList.add(userById);
+        }
+        return userList;
+    }
+
+    public User updateUser(User user){
+        if (user == null || user.firstName() == null)
+            throw new IllegalArgumentException("Invalid user data");
+        return userDao.saveUser(user);
     }
 }
